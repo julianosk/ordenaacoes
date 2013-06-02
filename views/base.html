@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Ordenador de Ações - Fórmula mágica de Joel Greenblatt</title>
+	<meta name="description" content="Filtre e ordene as ações da BOVESPA utilizando a fórmula mágica de Joel Greenblatt. Crie sua própria fórmula mágica!" />
+	<meta name="google-site-verification" content="ntwfBNLstd3rpm9bund88S0Ovo9bkpvurBwz1eIKmv4" />
+	<link rel="shortcut icon" href="/assets/img/favicon1.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+  	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.fixheadertable.js"></script>
+	<script type="text/javascript" src="/assets/js/functions.js"></script>
+</head>
+<body>
+<!--<div id="head" align="center"><h2>Ordenador de Ações</h2></div>
+<div id="main" align="center">
+
+	<!--<div id="push"></div>
+</div>-->
+{%block body%}{%endblock%}
+<!-- <div id="foot" align="center">rodapé</div> -->
+<div id="loadingdialog" title="Aguarde" align="center">
+        Carregando...
+        <div id="loadingprogress"></div>
+    </div>
+<div id="aboutdialog" title="Sobre" align="center">
+<p>Este site foi desenvolvido para filtrar e ordenar as ações da <a href="http://www.bmfbovespa.com.br/" target="_blank">BOVESPA</a> utilizando como base a fórmula mágica de <a href="http://en.wikipedia.org/wiki/Joel_Greenblatt" target="_blank">Joel Greenblatt</a>.</p><br>
+<p>O site permite que você crie sua própria "<a href="http://en.wikipedia.org/wiki/Magic_Formula_Investing" target="_blank">Fórmula Mágica</a>" para selecionar ações.</p><br>
+<p>Este projeto foi inspirado <a href="http://www.investidorjovem.com.br/achando-acoes-para-investir-a-formula-magica-de-joel-greenblatt" target="_blank">neste post</a> do blog <a href="http://www.investidorjovem.com.br/" target="_blank">Investidor Jovem</a>.</p>
+</div>
+<div id="contactdialog" title="Contato" align="center">
+	<p>Comentários ou Sugestões? Preencha o formulário abaixo!</p><br>
+	<form id="mailForm" action="/mail" method="post">
+  	<fieldset>
+    <p><label for="name">Nome</label>
+    <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" /></p><br>
+    <p><label for="email">Email</label>
+    <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" /></p><br>
+    <p><label for="message">Mensagem</label>
+    <textarea id="message" name="message" class="text ui-widget-content ui-corner-all"></textarea></p>
+  	</fieldset>
+  	<div id="contactError"></div>
+  	<div align="center">
+  	<script type="text/javascript">
+		var RecaptchaOptions = {
+			theme : 'clean'
+		};
+	</script>
+  	<script type="text/javascript"
+		src="http://www.google.com/recaptcha/api/challenge?k=6LcnKt8SAAAAAPLonvXTeQEMS2DUY1e3MUCuLpzX">
+	</script>
+	
+	<noscript>
+		<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LcnKt8SAAAAAPLonvXTeQEMS2DUY1e3MUCuLpzX"
+	         height="300" width="500" frameborder="0"></iframe><br>
+	    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+	    </textarea>
+	    <input type="hidden" name="recaptcha_response_field"
+	        value="manual_challenge">
+	</noscript>
+	</div>
+  	</form>
+
+</div>
+<div id="thankdialog" title="Obrigado" align="center">
+<p>Obrigado pelo contato!</p>
+</div>
+</body>
+</html>

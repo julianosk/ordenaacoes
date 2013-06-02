@@ -1,0 +1,4 @@
+cron:
+- description: update stocks
+  url: /crons/update
+  schedule: every day 04:00

@@ -1,0 +1,116 @@
+{%extends "base.html"%}
+{%block body%}
+<div id="titlebar">
+<h2>Invest Helper</h2>
+</div>
+<div id="sidebar">
+Última Cotação: <b>{{ lastQuote }}</b>
+<form NAME="formr" id="formreorder" action="">
+    <b>Classificar por:</b><br/>
+    <input id="check1" TYPE="checkbox" NAME="inds" Value="1" checked/> <label for="check1">P/L</label><BR>
+    <input id="check2" TYPE="checkbox" NAME="inds" Value="2" checked/> <label for="check2">ROE</label><BR>
+    <input id="check3" TYPE="checkbox" NAME="inds" Value="3" checked/> <label for="check3">EV/EBIT</label><BR>
+    <input id="check4" TYPE="checkbox" NAME="inds" Value="4" checked/> <label for="check4">ROIC</label><BR>
+    <input id="check5" TYPE="checkbox" NAME="inds" Value="5" checked/> <label for="check5">Crescimento</label><BR>
+    <input id="check6" TYPE="checkbox" NAME="inds" Value="6" checked/> <label for="check6">Div. Yield</label><BR>
+    <button id="ball">Todos</button><button id="bnone">Nenhum</button><br/>
+    <button id="breorder">Reordenar</button>
+</form>
+<br/>
+<form>
+    <table>
+        <thead>
+            <tr>
+                <th>Filtrar por:</th><th>Min:</th><th>Max:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id="filt1" TYPE="checkbox" NAME="filters" Value="1" checked/><label for="filt1">P/L</label></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr>
+                <td><input id="filt2" TYPE="checkbox" NAME="filters" Value="2" checked/><label for="filt2">ROE</label></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr>
+            	<td><input id="filt3" TYPE="checkbox" NAME="filters" Value="3" checked/><label for="filt3">EV/EBIT</label></td>
+            	<td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr>
+            	<td><input id="filt4" TYPE="checkbox" NAME="filters" Value="4" checked/><label for="filt4">ROIC</label></td>
+            	<td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr>
+            	<td><input id="filt5" TYPE="checkbox" NAME="filters" Value="5" checked/><label for="filt5">Crescimento</label></td>
+            	<td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr>            
+            	<td><input id="filt6" TYPE="checkbox" NAME="filters" Value="6" checked/><label for="filt6">Div. Yield</label></td>
+            	<td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+                <td><input type="number" min="0" max="10" step="1" value="6" style="width: 45px"></td>
+            </tr>
+            <tr colspan=3>
+            	<td><button id="ball">Todos</button><button id="bnone">Nenhum</button></td>
+            </tr>
+            <tr>
+            	<td><button id="breorder">Refiltrar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+<div id="maincontent">
+<table id="stockstable" class="tablesorter">
+	<thead>
+	<tr><!-- colspan=2-->
+		<th rowspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Papel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posiçao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>    	
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P/L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV/EBIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;Crescimento&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Div.&nbsp;Yield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th rowspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cotação&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+  	</tr>
+  	<tr>
+  	    <th>Posição</th>
+  	    <th>Soma</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	    <th>Posição</th>
+  	    <th>Valor</th>
+  	</tr>
+	</thead>
+	<tbody>
+	{%for stock in stocks%}
+	<tr><!-- class="{%if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}"-->
+		<td><a href="http://fundamentus.com.br/cotacoes.php?papel={{stock.name|escape}}" target="_blank">{{stock.name|escape}}</a></td>	
+		<td>{{forloop.counter}}</td><td>{{stock.possum}}</td>
+		<td>{{stock.pospl|escape}}</td><td>{{stock.pl|escape}}</td>
+		<td>{{stock.posroe|escape}}</td><td>{{stock.roe|escape}}</td>
+		<td>{{stock.posevebit|escape}}</td><td>{{stock.evebit|escape}}</td>
+		<td>{{stock.posroic|escape}}</td><td>{{stock.roic|escape}}</td>
+		<td>{{stock.posgrowth|escape}}</td><td>{{stock.growth|escape}}</td>
+		<td>{{stock.posdivyield|escape}}</td><td>{{stock.divyield|escape}}</td>
+		<td>{{stock.quote|escape}}</td>
+	</tr>
+	{%endfor%}
+	</tbody>
+</table>
+</div>
+{%endblock%}

@@ -1,0 +1,21 @@
+application: ordenaacoes
+version: 3
+runtime: python
+api_version: 1
+
+builtins:
+- datastore_admin: on
+
+handlers:
+
+- url: /assets
+  static_dir: assets
+
+- url: /crons/.*
+  script: main.py
+  login: admin
+
+- url: .*
+  script: main.py
+
+

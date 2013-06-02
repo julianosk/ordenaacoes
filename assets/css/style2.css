@@ -1,0 +1,80 @@
+
+* { 
+    margin: 0; 
+    padding:0;
+}
+
+html, body {
+    height:100%;
+    overflow:hidden;
+}
+body {
+    position:absolute; 
+    width:100%; 
+    height:100%;
+}
+.wrapper {
+    overflow-y:scroll;
+    height: 90%;
+}
+.footer {
+    position:static;
+    bottom: 0;
+    height: 10%;
+    background-color:yellow;
+}
+
+#header {
+	height: 86px
+}
+#wrapper {
+    height: 50%;
+}
+#content {
+}
+#footer, #push {
+}
+#sidebar {
+    overflow-y:scroll;
+    height: 100%;
+    float: left;
+}
+#tableContainer {
+	overflow:scroll;
+    height: 100%;
+}
+#stockstable {
+	text-align: center;
+	font-family:arial;
+	font-size: 9pt;
+}
+#stockstable thead tr th {
+	background-color: #D7FFBD;
+    border: 2px solid #FFF;
+}
+#stockstable thead tr th{
+    background-image: url(/assets/img/bg.gif);
+    background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+#stockstable thead tr .headerSortUp{
+	background-image: url(/assets/img/asc.gif);
+}
+#stockstable thead tr .headerSortDown{
+	background-image: url(/assets/img/desc.gif);
+}
+#stockstable tbody td {
+  	background-color: #fff;
+}
+#stockstable tbody tr.odd td {
+  	background-color: #ffff99;
+}
+#stockstable tbody tr:hover td { 
+	background-color: #D7FFBD; 
+}
+
+#stockstable tbody tr td:hover { 
+	background-color: #BCFF90; 
+}
+

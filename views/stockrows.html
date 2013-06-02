@@ -1,0 +1,10 @@
+{%for stock in stocks%}
+<tr>
+	<td><a href="http://fundamentus.com.br/cotacoes.php?papel={{stock.name|escape}}" target="_blank">{{stock.name|escape}}</a></td>
+	<td>{{stock.possum}}</td>
+	{%for attr in selected%}
+        <td>{{stock|getpos:attr}} ({{stock|getattribute:attr}})</td>
+    {%endfor%}
+    <td>{{stock.quote|escape}}</td>
+</tr>
+{%endfor%}

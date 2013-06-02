@@ -1,0 +1,70 @@
+
+* { 
+    margin: 0; 
+}
+#header {
+	height: 86px
+}
+#wrapper {
+    min-height: 100%;
+    height:     auto !important;
+    height:     100%;
+    margin:     0 auto -40px; /* -44px being the size of the footer */
+}
+#content {
+    width:810px;
+    overflow: auto;
+    max-height:100%-44px;
+}
+#footer, #push {
+    height: 40px;   
+}
+#sidebar {
+    float: left;
+    width: 310px;
+    text-align: left;
+    overflow: auto;
+    /*max-height:580px;*/
+}
+#tableContainer {
+	width:500px;
+	overflow:auto;
+	display:inline;
+	float:left;
+	/*max-height:580px;*/
+}
+    #stockstable {
+    	text-align: center;
+    	font-family:arial;
+    	font-size: 9pt;
+    }
+    #stockstable thead tr th {
+    	background-color: #D7FFBD;
+        border: 2px solid #FFF;
+    }
+    #stockstable thead tr th{
+        background-image: url(/assets/img/bg.gif);
+        background-repeat: no-repeat;
+    	background-position: center right;
+    	cursor: pointer;
+    }
+    #stockstable thead tr .headerSortUp{
+    	background-image: url(/assets/img/asc.gif);
+    }
+    #stockstable thead tr .headerSortDown{
+    	background-image: url(/assets/img/desc.gif);
+    }
+    #stockstable tbody td {
+      	background-color: #fff;
+    }
+    #stockstable tbody tr.odd td {
+      	background-color: #ffff99;
+    }
+    #stockstable tbody tr:hover td { 
+    	background-color: #D7FFBD; 
+    }
+
+    #stockstable tbody tr td:hover { 
+    	background-color: #BCFF90; 
+    }
+

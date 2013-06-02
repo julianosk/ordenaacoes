@@ -1,0 +1,70 @@
+{%extends "base.html"%}
+{%block body%}
+<div id="sidebar">
+    <div id= "sidecontent"  align="center">
+        <div id="sidehead"><a href="/">
+<img src="/assets/img/logosmall.png" alt="Ordenador de Ações"></a></div>
+        <div id="menu" align="center"><a id="aboutlink">Sobre</a> | <a id="contactlink">Contato</a></div>
+        <hr>
+        <div id="lastquote">Última Cotação: <b>{{ lastQuote }}</b></div>
+        <hr>
+        <form NAME="formr" id="formreorder" action="" align="left">
+            <b>Ordenar por:</b><br/>
+            Selecionar <a id="aall">Todos</a> | <a id="anone">Nenhum</a>
+            <p>
+                <div id="orderchecks">
+            <div>
+            {%for attr in selected%}
+                <input id="check{{ forloop.counter }}" TYPE="checkbox" class="checkreorder" NAME="inds" Value="{{ forloop.counter }}" checked/> <label for="check{{ forloop.counter }}">{{attrnames|getattribute:attr}}</label><BR>
+            {%endfor%}
+            </div>
+            </div>
+            </p>
+            <div align="center"><button id="breorder">Reordenar</button></div>
+        </form>
+        <hr>
+        <div id="refilterDiv">
+        <form id="refilterForm" action="/refilter" method="post">
+            <table id="refilterTable" style="text-align:center">
+                <thead>
+                    <tr>
+                        <th>Filtrar:</th><th>Intervalo:<br/><span class="no-bold"><a id="filterall">Todos</a><br/><a id="filternone">Nenhum</a></span></th><th>Retornar:<br/><span class="no-bold"><a id="returnall">Todos</a><br/><a id="returnnone">Nenhum</a></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for attr in stockattrs%}
+                    <tr>
+                        <td class="attrname" title="{{attrtips|getattribute:attr}}">{{attrnames|getattribute:attr}}</td>
+                        <td>
+                            <input id="cmin{{ attr }}" class="checkfilter" name="cmin{{ attr }}" TYPE="checkbox" value="1" {% if boolfilters|getmin:attr %}checked{%endif%}/>
+                            <nobr><label for="cmin{{ attr }}">Min: </label><nobr>
+                        <input id="min{{ attr }}" name="min{{ attr }}" class="spinnerfilter" value="{{ filters|getmin:attr }}" style="width: 28px;font-size: 80%;"/><br>
+                        <input id="cmax{{ attr }}" class="checkfilter" name="cmax{{ attr }}" type="checkbox" value="1" {% if boolfilters|getmax:attr %}checked{%endif%}/><nobr><label for="cmax{{ attr }}">Max: </label><nobr>
+                        <input id="max{{ attr }}" name="max{{ attr }}" class="spinnerfilter" value="{{ filters|getmax:attr }}" style="width: 28px;font-size: 80%;"/></td>
+                        <td><input id="return{{ attr }}" class="returncheck" name="return{{ attr }}" type="checkbox" value="1" {% if boolreturn|getattribute:attr %}checked{%endif%}/><label for="return{{ attr }}">Retornar</label></td>
+                    </tr>
+                    {%endfor%}
+                    <!--<tr colspan=3>
+                    	<td><button id="breorder">Refiltrar</button></td>
+                    </tr>-->
+                </tbody>
+            </table>
+    
+        </form>
+        </div>
+    </div>
+    <div align="center" id="sidefoot"><hr /><button id="brefilter">Refiltrar</button></div>
+</div>
+
+
+<div id="content">
+    <div id="loadingdialog" title="Aguarde" align="center">
+        Carregando...
+        <div id="loadingprogress"></div>
+    </div>
+<div id="tablecontent">
+{% include "table.html" %}
+</div>
+
+</div>
+{%endblock%}

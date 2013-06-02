@@ -1,0 +1,24 @@
+<table class="tablesorter">
+	<thead>
+	<tr><!-- colspan=2-->
+		<th>&nbsp;&nbsp;&nbsp;Papel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    	<th>&nbsp;&nbsp;&nbsp;Soma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        {%for attr in selected%}
+            <th>&nbsp;&nbsp;&nbsp;<nobr>{{attrnames|getattribute:attr}}</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        {%endfor%}
+    	<th>&nbsp;&nbsp;&nbsp;<nobr>Cotação (Oscilação)</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+  	</tr>
+	</thead>
+	<tbody>
+	{%for stock in stocks%}
+	<tr><!-- class="{%if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}"-->
+		<td><a href="http://fundamentus.com.br/cotacoes.php?papel={{stock.name|escape}}" target="_blank">{{stock.name|escape}}</a></td>
+		<td><nobr>{{stock.possum}}</nobr></td>
+		{%for attr in selected%}
+            <td><nobr>{{stock|getpos:attr}} ({{stock|getattribute:attr}})</nobr></td>
+        {%endfor%}
+        <td><nobr>{{stock.quote|escape}} <span class="oscillation">({{stock.oscillation|floatformat:2}}%)</span></nobr></td>
+	</tr>
+	{%endfor%}
+	</tbody>
+</table>
