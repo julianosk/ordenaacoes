@@ -22,7 +22,7 @@ class UpdateHandler(webapp.RequestHandler):
 
         # https://developers.google.com/appengine/docs/python/urlfetch/asynchronousrequests?hl=pl
         
-        url = 'http://fundamentus.com.br/detalhes.php?papel=VALE5'
+        url = 'http://fundamentus.com.br/detalhes.php?papel=VALE3'
         memcache.delete("goodStocks")
         rpc = urlfetch.create_rpc(deadline=600)
         urlfetch.make_fetch_call(rpc,url)
